@@ -22,7 +22,7 @@ function updateCountdown() {
     countdownElement.innerHTML = "The event has started!";
   } else {
     // Otherwise, display the remaining days
-    countdownElement.innerHTML = `${days} days`;
+    countdownElement.innerHTML = `${days} days left`;
   }
 }
 
