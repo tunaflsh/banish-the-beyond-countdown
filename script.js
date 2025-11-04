@@ -1,6 +1,6 @@
 // --- Step 1: Set your target date ---
 // The format is "YYYY-MM-DD"
-const targetDate = new Date("2026-10-10");
+const targetDate = new Date("2026-10-10T00:00:00-05:00");
 
 // --- Step 2: Get the HTML element to display the countdown ---
 const countdownElement = document.getElementById("countdown");
@@ -13,16 +13,19 @@ function updateCountdown() {
   // Calculate the difference in milliseconds
   const difference = targetDate - now;
 
-  // --- Calculations for days ---
+  // --- Calculations for days, hours, minutes, seconds ---
   const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
   // --- Display the result ---
   if (difference < 0) {
     // If the countdown is over, display a message
     countdownElement.innerHTML = "The event has started!";
   } else {
-    // Otherwise, display the remaining days
-    countdownElement.innerHTML = `${days} days left`;
+    // Display the full countdown
+    countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
   }
 }
 
