@@ -4,41 +4,15 @@ body {
   color: #ecf0f1;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Changed from 'center' to 'flex-start' */
+  align-items: flex-start;
   height: 100vh;
   margin: 0;
   text-align: center;
-  padding-top: 2rem; /* Add some space from the very top */
+  padding-top: 2rem;
 
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("assets/background.jpg");
-
+  /* Simplified background rule - just the image */
+  background: url("assets/background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-.container {
-  max-width: 600px;
-  padding: 2rem;
-  /* Removed the background-color and border-radius */
-}
-
-h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-}
-
-p {
-  font-size: 1.2rem;
-  color: #bdc3c7;
-}
-
-.countdown {
-  font-size: 4rem;
-  font-weight: bold;
-  margin-top: 2rem;
-  /* Removed background-color, padding, and border-radius */
-  /* Added text shadow for better readability */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
