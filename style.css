@@ -4,17 +4,15 @@ body {
   color: #ecf0f1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* Changed from 'center' to 'flex-start' */
   height: 100vh;
   margin: 0;
   text-align: center;
+  padding-top: 2rem; /* Add some space from the very top */
 
-  /* --- NEW BACKGROUND IMAGE RULES --- */
-  /* This creates a dark overlay and sets your image */
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("assets/pz.gif");
+    url("assets/background.jpg");
 
-  /* These rules ensure the image covers the whole screen */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -23,9 +21,7 @@ body {
 .container {
   max-width: 600px;
   padding: 2rem;
-  /* Add a subtle background to the container for better readability */
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
+  /* Removed the background-color and border-radius */
 }
 
 h1 {
@@ -42,7 +38,7 @@ p {
   font-size: 4rem;
   font-weight: bold;
   margin-top: 2rem;
-  background-color: #34495e;
-  padding: 2rem;
-  border-radius: 10px;
+  /* Removed background-color, padding, and border-radius */
+  /* Added text shadow for better readability */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
