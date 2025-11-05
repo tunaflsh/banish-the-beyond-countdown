@@ -1,6 +1,6 @@
 // --- Step 1: Set your target date ---
 // The format is "YYYY-MM-DD"
-const targetDate = new Date("2026-10-10T00:00:00-05:00");
+const targetDate = new Date("2026-10-10T12:00:00-05:00");
 
 // --- Step 2: Get the HTML element to display the countdown ---
 const countdownElement = document.getElementById("countdown");
