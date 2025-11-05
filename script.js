@@ -1,36 +1,45 @@
-// --- Step 1: Set your target date ---
-// The format is "YYYY-MM-DD"
-const targetDate = new Date("2026-10-10T12:00:00-05:00");
-
-// --- Step 2: Get the HTML element to display the countdown ---
 const countdownElement = document.getElementById("countdown");
 
-// --- Step 3: Create a function to calculate and display the time ---
-function updateCountdown() {
-  // Get the current date and time
-  const now = new Date();
 
-  // Calculate the difference in milliseconds
-  const difference = targetDate - now;
+function getSecondFriday(year, month) {
+  const weekday = new Date(`${year}-${month}-01`).getDay();
+  const secondFriday = 8 + (5 - weekday + 7) % 7;
 
-  // --- Calculations for days, hours, minutes, seconds ---
-  const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-  // --- Display the result ---
-  if (difference < 0) {
-    // If the countdown is over, display a message
-    countdownElement.innerHTML = "The event has started!";
-  } else {
-    // Display the full countdown
-    countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  }
+  return new Date(`${year}-${month}-${secondFriday}T17:00:00Z`);  // second Friday of the month
 }
 
-// --- Step 4: Run the function every second to keep it updated ---
-// Initial call to display immediately
-updateCountdown();
-// Update every second
-setInterval(updateCountdown, 1000);
+
+function getDDHHMMSS(time) {
+  const days = Math.floor(time / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((time % (1000 * 60)) / 1000);
+
+  return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+
+function update() {
+  const now = new Date();
+  const month = 10;  // Banish the Beyond starts in October
+  const year = now.getUTCFullYear();
+  let eventStart = getSecondFriday(year, month);
+
+  const eventDuration = 2030400000;  // 23d 12h (in milliseconds)
+  const eventEnd = eventStart.setTime(eventStart.getTime() + eventDuration);
+
+  if (eventStart <= now && now < eventEnd) {  // The event is ongoing
+    countdownElement.innerHTML = getDDHHMMSS(eventEnd - now) + '\nleft to banish the spirits';
+    return;
+  }
+
+  if (eventEnd <= now) {  // the next event will start next year
+    eventStart = getSecondFriday(year + 1, month);
+  }
+
+  countdownElement.innerHTML = getDDHHMMSS(eventStart - now) + '\nuntil the spirits return';
+}
+
+
+update();  // Initial call to display immediately
+setInterval(updateCountdown, 1000);  // Update every second
