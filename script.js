@@ -3,7 +3,7 @@ const countdownElement = document.getElementById("countdown");
 
 function getSecondFriday(year, month) {
   const weekday = new Date(`${year}-${month}-01`).getDay();
-  const secondFriday = 8 + (5 - weekday + 7) % 7;
+  const secondFriday = String(1 + 7 + (5 - weekday + 7) % 7).padStart(2, "0");
 
   return new Date(`${year}-${month}-${secondFriday}T17:00:00Z`);  // second Friday of the month
 }
@@ -26,10 +26,10 @@ function update() {
   let eventStart = getSecondFriday(year, month);
 
   const eventDuration = 2030400000;  // 23d 12h (in milliseconds)
-  const eventEnd = eventStart.setTime(eventStart.getTime() + eventDuration);
+  const eventEnd = new Date(eventStart.getTime() + eventDuration);
 
   if (eventStart <= now && now < eventEnd) {  // The event is ongoing
-    countdownElement.innerHTML = getDDHHMMSS(eventEnd - now) + '\nleft to banish the spirits';
+    countdownElement.innerHTML = getDDHHMMSS(eventEnd - now) + '<br>left to banish them beyond';
     return;
   }
 
@@ -37,9 +37,9 @@ function update() {
     eventStart = getSecondFriday(year + 1, month);
   }
 
-  countdownElement.innerHTML = getDDHHMMSS(eventStart - now) + '\nuntil the spirits return';
+  countdownElement.innerHTML = getDDHHMMSS(eventStart - now) + '<br>until the spirit is released';
 }
 
 
 update();  // Initial call to display immediately
-setInterval(updateCountdown, 1000);  // Update every second
+setInterval(update, 1000);  // Update every second
