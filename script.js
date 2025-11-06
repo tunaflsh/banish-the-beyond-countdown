@@ -22,7 +22,7 @@ function getNthWeekday(n, year, month, weekday, hour=0, minute=0, second=0) {
   minute = String(minute).padStart(2, "0");
   second = String(second).padStart(2, "0");
 
-  return new Date(`${year}-${month}-${nthWeekday}T${hour}:${minite}:${second}Z`);  // nth weekday of the month
+  return new Date(`${year}-${month}-${nthWeekday}T${hour}:${minute}:${second}Z`);  // nth weekday of the month
 }
 
 
