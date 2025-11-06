@@ -42,4 +42,4 @@ function update() {
 
 
 update();  // Initial call to display immediately
-setInterval(update, 1000);  // Update every second
+setInterval(update, 50);  // Update 20 times per second for responsiveness
